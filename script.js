@@ -351,12 +351,19 @@ class LotteryGame {
             return;
         }
 
-        this.numberHistoryDisplay.innerHTML = this.numberHistory.map((item, index) => `
-            <div class="number-item" data-index="${index}">
+        // Reverse the array to show most recent first
+        const reversedHistory = [...this.numberHistory].reverse();
+        
+        this.numberHistoryDisplay.innerHTML = reversedHistory.map((item, reverseIndex) => {
+            // Calculate original index from reverse index
+            const originalIndex = this.numberHistory.length - 1 - reverseIndex;
+            return `
+            <div class="number-item" data-index="${originalIndex}">
                 <div class="number-text">${item.number}</div>
                 <div class="timestamp">${item.timestamp}</div>
             </div>
-        `).join('');
+        `;
+        }).join('');
 
         // Add click listeners for editing
         const numberItems = this.numberHistoryDisplay.querySelectorAll('.number-item');
