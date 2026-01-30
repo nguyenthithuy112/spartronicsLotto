@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lô Tô Miền Nam - Chúc Mừng Năm Mới 2026</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;900&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="history-header">
+            <h1 class="history-title">🎊 ĐOÀN LÔ TÔ BÉ BẢY 🎊</h1>
+            <div class="history-controls">
+                <button id="clearHistoryBtn" class="help-btn">🗑️ XÍ XOÁ</button>
+                <button class="help-btn" id="helpBtn">❓ Hướng dẫn</button>
+                <button class="tet-btn" id="tetBtn">🎊 Chúc Tết</button>
+            </div>
+            <div id="numberHistory" class="number-history-header">
+                <div class="empty-history">Chưa có số nào được đọc</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="current-number-section">
+                <h2 class="section-title">Số hiện tại</h2>
+                <div class="current-number-container">
+                    <div id="currentNumber" class="current-number">--</div>
+                    <div class="edit-controls">
+                        <button id="editBtn" class="edit-btn">✏️ Sửa</button>
+                        <button id="confirmBtn" class="confirm-btn" style="display: none;">✅ Xác nhận</button>
+                        <button id="cancelBtn" class="cancel-btn" style="display: none;">❌ Hủy</button>
+                    </div>
+                </div>
+                <div class="number-input" id="numberInput" style="display: none;">
+                    <input type="text" id="editNumberInput" maxlength="2">
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <div class="verification-section">
+                    <h2 class="section-title">🏆 Kiểm Tra Vé Số 🏆</h2>
+                    <div class="verification-compact">
+                        <div class="ticket-input-compact">
+                            <input type="text" id="ticketNumbers" placeholder="5 số: 12,34,56,78,90" maxlength="14">
+                            <button id="verifyBtn" class="verify-btn-small">🔍 Kiểm tra</button>
+                        </div>
+                    </div>
+                    
+                    <div id="verificationResult" class="verification-result" style="display: none;">
+                        <h3 class="result-title">Kết quả:</h3>
+                        <div id="resultDetails" class="result-details"></div>
+                        <div id="winnerAnnouncement" class="winner-announcement" style="display: none;">
+                            <div class="winner-content">
+                                <h2>🎉 KINHHHHHHHHHHHHHH!!!!🎉</h2>
+                                <p class="winner-message">CHÚC MỪNG TRÚNG GIẢI NHÉ!</p>
+                                <div class="winner-animation">🏆🎊🎈🎉🎊🏆</div>
+                            </div>
+                        </div>
+                        <div id="loserAnnouncement" class="loser-announcement" style="display: none;">
+                            <div class="loser-content">
+                                <h2>😭 LÊU LÊU! KINH SỘ RỒI! 😭</h2>
+                                <p class="loser-message">Không trúng giải nào!</p>
+                                <div class="loser-animation">💔🤦‍♂️😢🤷‍♂️💔</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="manual-input">
+                    <div class="manual-label">
+                        <span>✏️ Nhập số</span>
+                    </div>
+                    <div class="manual-input-controls">
+                        <input type="text" id="manualNumber" placeholder="01" maxlength="2">
+                        <button id="addManualBtn" class="add-btn">Thêm</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Winner Popup Overlay -->
+    <div id="winnerOverlay" class="winner-overlay">
+        <div class="winner-popup">
+            <h1>🎉 🎉 KINHHHHHHHHHH!!!!</h1>
+            <div class="winner-message">CHÚC MỪNG TRÚNG GIẢI NHÉ</div>
+            <div class="winner-numbers" id="winnerNumbers">
+                <!-- Numbers will be inserted here -->
+            </div>
+            <div class="winner-animation">🏆🎊🎈🎉🎊🏆</div>
+            <button class="winner-close-btn" id="winnerCloseBtn">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Loser Popup Overlay -->
+    <div id="loserOverlay" class="loser-overlay">
+        <div class="loser-popup">
+            <h1>😭 LÊU LÊU! KINH SỘ RỒI! 😭</h1>
+            <div class="loser-message">Không trúng giải nào! Thử lại lần sau!</div>
+            <div class="loser-numbers" id="loserNumbers">
+                <!-- Numbers will be inserted here -->
+            </div>
+            <div class="loser-comparison" id="loserComparison">
+                <!-- Detailed comparison will be inserted here -->
+            </div>
+            <div class="loser-animation">💔🤦‍♂️😢🤷‍♂️💔</div>
+            <button class="loser-close-btn" id="loserCloseBtn">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Help Popup Overlay -->
+    <div id="helpOverlay" class="help-overlay">
+        <div class="help-popup">
+            <h2>📖 HƯỚNG DẪN DÒ SỐ</h2>
+            <div class="help-content">
+                <div class="help-image">
+                    <img src="HUONGDAN.png" alt="Hướng dẫn đọc số Lô Tô">
+                </div>
+                
+            </div>
+            <button class="help-close-btn" id="helpCloseBtn">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Tet Popup Overlay -->
+    <div id="tetOverlay" class="tet-overlay">
+        <div class="tet-popup">
+            <h2 class="tet-title">🎊 CHÚC MỪNG NĂM MỚI BÍNH NGỌ 2026 🎊</h2>
+            <div class="tet-content">
+                <div class="tet-poem">
+                    <div class="poem-text">
+                        <div class="poem-row">
+                            <p class="poem-line">🎆 Vui Tết Bính Ngọ, Ai cùng giàu to,</p>
+                            <p class="poem-line">💪 Sức khỏe chẳng lo, Buồn thì xếp xó.</p>
+                        </div>
+                        <div class="poem-row">
+                            <p class="poem-line">🌟 Khó khăn chuyện nhỏ, Việc chạy ro ro,</p>
+                            <p class="poem-line">😄 Không còn nhăn nhó, Muốn gì được đó.</p>
+                        </div>
+                      
+                        <div class="poem-row">
+                            <p class="poem-line special">🎉 Chúc bạn hoan kỷ, Sức luôn bền bỉ,</p>
+                            <p class="poem-line special">💸 Tiền vô bạc tỷ, Yêu thương thỏa chí.</p>
+                        </div>
+                        <div class="poem-row">
+                            <p class="poem-line special">🌈 Vạn sự như ý, Luôn cười hy hí!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tet-animation">
+                    <div class="firework">🎆</div>
+                    <div class="firework">🎇</div>
+                    <div class="firework">🎊</div>
+                    <div class="firework">🎉</div>
+                    <div class="firework">🧧</div>
+                    <div class="firework">🏮</div>
+                </div>
+            </div>
+            <button class="tet-close-btn" id="tetCloseBtn">Đóng</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
